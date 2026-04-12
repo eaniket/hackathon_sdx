@@ -689,346 +689,346 @@ The MVP is successful if:
 
 This section is the working checklist for the full MVP. It is intentionally detailed so implementation can be done phase by phase without having to re-scope work mid-build.
 
-### Phase 0: Product and UX alignment
+### Phase 0: Product and UX alignment `Completed`
 
-- Confirm the MVP story: discover creators, inspect transparent metrics, simulate investing, track portfolio.
-- Finalize the positioning statement so the product stays aligned with Forum's philosophy but remains creator-specific.
-- Confirm that the MVP will avoid black-box scores and use raw metrics plus methodology instead.
-- Decide the initial creator categories to support in the seed dataset.
-- Decide the first supported content sources for the MVP.
+- [x] Confirm the MVP story: discover creators, inspect transparent metrics, simulate investing, track portfolio.
+- [x] Finalize the positioning statement so the product stays aligned with Forum's philosophy but remains creator-specific.
+- [x] Confirm that the MVP will avoid black-box scores and use raw metrics plus methodology instead.
+- [x] Decide the initial creator categories to support in the seed dataset.
+- [x] Decide the first supported content sources for the MVP.
   Recommended: YouTube first, optional Instagram or TikTok second.
-- Decide whether the app will use a dark neutral theme or a light neutral theme inspired by Forum.
-- Define the exact navigation tabs and page names.
-- Write the short product copy for landing, discovery, profile, portfolio, and methodology pages.
-- Define the user-facing labels for all metrics so naming stays consistent throughout the app.
+- [x] Decide whether the app will use a dark neutral theme or a light neutral theme inspired by Forum.
+- [x] Define the exact navigation tabs and page names.
+- [x] Write the short product copy for landing, discovery, profile, portfolio, and methodology pages.
+- [x] Define the user-facing labels for all metrics so naming stays consistent throughout the app.
 
-### Phase 1: Project scaffolding
+### Phase 1: Project scaffolding `Completed`
 
 #### Repository setup
 
-- Create `backend/` directory structure.
-- Create `frontend/` directory structure.
-- Add a root `README` later if needed, but do not prioritize it now.
-- Decide whether to use a monorepo-style root workflow or separate frontend/backend commands.
+- [x] Create `backend/` directory structure.
+- [x] Create `frontend/` directory structure.
+- [x] Add a root `README` later if needed, but do not prioritize it now.
+- [x] Decide whether to use a monorepo-style root workflow or separate frontend/backend commands.
 
 #### Backend setup
 
-- Initialize FastAPI project.
-- Add dependency management for Python packages.
-- Create `app/main.py`.
-- Create `app/api/`, `app/models/`, `app/schemas/`, `app/services/`, `app/db/`, `app/core/`, and `app/tasks/`.
-- Configure environment variable loading.
-- Add local development settings.
-- Set up CORS for the frontend origin.
-- Decide on SQLite or Postgres for MVP.
+- [x] Initialize FastAPI project.
+- [x] Add dependency management for Python packages.
+- [x] Create `app/main.py`.
+- [x] Create `app/api/`, `app/models/`, `app/schemas/`, `app/services/`, `app/db/`, `app/core/`, and `app/tasks/`.
+- [x] Configure environment variable loading.
+- [x] Add local development settings.
+- [x] Set up CORS for the frontend origin.
+- [x] Decide on SQLite or Postgres for MVP.
   Recommended: SQLite if speed matters more than infra realism.
 
 #### Frontend setup
 
-- Initialize React app.
-- Install Tailwind CSS.
-- Install and initialize shadcn/ui.
-- Add routing setup.
-- Add TanStack Query.
-- Add charting library.
-- Set up a base layout and theming foundation.
-- Add font setup and numeric display styles suitable for data-heavy UI.
+- [x] Initialize React app.
+- [x] Install Tailwind CSS.
+- [x] Install and initialize shadcn/ui.
+- [x] Add routing setup.
+- [x] Add TanStack Query.
+- [x] Add charting library.
+- [x] Set up a base layout and theming foundation.
+- [x] Add font setup and numeric display styles suitable for data-heavy UI.
 
-### Phase 2: Data modeling and backend foundation
+### Phase 2: Data modeling and backend foundation `Completed`
 
 #### Database design
 
-- Implement `creators` table/model.
-- Implement `creator_platforms` table/model.
-- Implement `content_items` table/model.
-- Implement `brand_deals` table/model.
-- Implement `investments` table/model.
-- Implement `users` table/model or create a seeded demo-user strategy.
-- Add timestamps where needed.
-- Add indexes on fields likely to be queried often.
+- [x] Implement `creators` table/model.
+- [x] Implement `creator_platforms` table/model.
+- [x] Implement `content_items` table/model.
+- [x] Implement `brand_deals` table/model.
+- [x] Implement `investments` table/model.
+- [x] Implement `users` table/model or create a seeded demo-user strategy.
+- [x] Add timestamps where needed.
+- [x] Add indexes on fields likely to be queried often.
   Examples: `slug`, `creator_id`, `platform`, `deal_date`.
 
 #### Schemas and serialization
 
-- Create Pydantic schemas for creator list responses.
-- Create Pydantic schemas for creator detail responses.
-- Create Pydantic schemas for content items.
-- Create Pydantic schemas for brand deal responses.
-- Create Pydantic schemas for portfolio summary and positions.
-- Create request schema for posting a simulated investment.
+- [x] Create Pydantic schemas for creator list responses.
+- [x] Create Pydantic schemas for creator detail responses.
+- [x] Create Pydantic schemas for content items.
+- [x] Create Pydantic schemas for brand deal responses.
+- [x] Create Pydantic schemas for portfolio summary and positions.
+- [x] Create request schema for posting a simulated investment.
 
 #### Seed strategy
 
-- Define 8-12 sample creators.
-- Assign each creator a category and short bio.
-- Assign 2-3 platforms per creator.
-- Create realistic platform metrics for each creator.
-- Create 10-20 recent content items per creator.
-- Create seeded brand deal records for a subset of creators.
-- Create optional monetization history fields or placeholder structures.
-- Seed a demo user and a few sample investments.
+- [x] Define 8-12 sample creators.
+- [x] Assign each creator a category and short bio.
+- [x] Assign 2-3 platforms per creator.
+- [x] Create realistic platform metrics for each creator.
+- [x] Create 10-20 recent content items per creator.
+- [x] Create seeded brand deal records for a subset of creators.
+- [x] Create optional monetization history fields or placeholder structures.
+- [x] Seed a demo user and a few sample investments.
 
-### Phase 3: Core API implementation
+### Phase 3: Core API implementation `Completed`
 
 #### Read APIs
 
-- Implement `GET /api/creators`.
-- Add sorting support for `30d growth`, `engagement rate`, and `sponsored activity`.
-- Add optional category filtering.
-- Add optional platform filtering.
-- Add optional search by creator name or handle.
-- Implement `GET /api/creators/{slug}`.
-- Implement `GET /api/creators/{slug}/content`.
-- Implement `GET /api/creators/{slug}/brand-deals`.
-- Implement `GET /api/portfolio`.
-- Implement `GET /api/methodology`.
+- [x] Implement `GET /api/creators`.
+- [x] Add sorting support for `30d growth`, `engagement rate`, and `sponsored activity`.
+- [x] Add optional category filtering.
+- [x] Add optional platform filtering.
+- [x] Add optional search by creator name or handle.
+- [x] Implement `GET /api/creators/{slug}`.
+- [x] Implement `GET /api/creators/{slug}/content`.
+- [x] Implement `GET /api/creators/{slug}/brand-deals`.
+- [x] Implement `GET /api/portfolio`.
+- [x] Implement `GET /api/methodology`.
 
 #### Mutation APIs
 
-- Implement `POST /api/investments`.
-- Validate fixed investment amounts for MVP.
-- Return updated portfolio summary after investment creation.
-- Add a placeholder or internal-only `POST /api/brand-deals/detect`.
+- [x] Implement `POST /api/investments`.
+- [x] Validate fixed investment amounts for MVP.
+- [x] Return updated portfolio summary after investment creation.
+- [x] Add a placeholder or internal-only `POST /api/brand-deals/detect`.
 
 #### API quality tasks
 
-- Add error handling for missing creators and invalid payloads.
-- Add response models consistently across endpoints.
-- Add lightweight logging.
-- Add sample health check endpoint.
+- [x] Add error handling for missing creators and invalid payloads.
+- [x] Add response models consistently across endpoints.
+- [x] Add lightweight logging.
+- [x] Add sample health check endpoint.
 
-### Phase 4: Metric computation and aggregation
+### Phase 4: Metric computation and aggregation `Completed`
 
 #### Aggregation logic
 
-- Define how `total audience` is computed across platforms.
-- Define how aggregate `engagement rate` is computed for discovery cards.
-- Define how `30d growth` is represented when creators have multiple platforms.
-- Define how `unique brand partners` is counted.
-- Define how `detected sponsored posts` is counted by time window.
+- [x] Define how `total audience` is computed across platforms.
+- [x] Define how aggregate `engagement rate` is computed for discovery cards.
+- [x] Define how `30d growth` is represented when creators have multiple platforms.
+- [x] Define how `unique brand partners` is counted.
+- [x] Define how `detected sponsored posts` is counted by time window.
 
 #### Summary preparation
 
-- Create backend helpers to assemble creator cards.
-- Create backend helpers to assemble profile page datasets.
-- Create chart-friendly time series payloads for growth and engagement.
-- Create platform-specific metric blocks for the profile page.
-- Decide which calculations happen in seed scripts versus response assembly.
+- [x] Create backend helpers to assemble creator cards.
+- [x] Create backend helpers to assemble profile page datasets.
+- [x] Create chart-friendly time series payloads for growth and engagement.
+- [x] Create platform-specific metric blocks for the profile page.
+- [x] Decide which calculations happen in seed scripts versus response assembly.
 
 #### Methodology alignment
 
-- Write exact formulas for user-facing metrics.
-- Record which metrics are directly sourced and which are derived.
-- Add update-frequency metadata to the methodology response.
-- Add source labels to methodology content.
+- [x] Write exact formulas for user-facing metrics.
+- [x] Record which metrics are directly sourced and which are derived.
+- [x] Add update-frequency metadata to the methodology response.
+- [x] Add source labels to methodology content.
 
-### Phase 5: Brand-deal detection pipeline design
+### Phase 5: Brand-deal detection pipeline design `Completed`
 
 #### Detection rules
 
-- Define the keyword and pattern heuristics for likely sponsor content.
-- Define the rules for promo-code detection.
-- Define the rules for affiliate-link detection.
-- Define how tagged brands or mentions will be normalized.
-- Define which evidence text will be surfaced in the UI.
+- [x] Define the keyword and pattern heuristics for likely sponsor content.
+- [x] Define the rules for promo-code detection.
+- [x] Define the rules for affiliate-link detection.
+- [x] Define how tagged brands or mentions will be normalized.
+- [x] Define which evidence text will be surfaced in the UI.
 
 #### LLM extraction design
 
-- Define the structured output schema for sponsorship extraction.
-- Design the prompt for classifying sponsored content.
-- Design the prompt for extracting brand name and evidence.
-- Decide how confidence will be stored and displayed.
-- Decide which content sources will actually be passed to the LLM.
+- [x] Define the structured output schema for sponsorship extraction.
+- [x] Design the prompt for classifying sponsored content.
+- [x] Design the prompt for extracting brand name and evidence.
+- [x] Decide how confidence will be stored and displayed.
+- [x] Decide which content sources will actually be passed to the LLM.
 
 #### Data workflow
 
-- Design how candidate content is selected before LLM calls.
-- Design how extracted records map into the `brand_deals` table.
-- Define the difference between `detected`, `verified`, and `manual` source types.
-- Decide whether the MVP runs detection offline in a seed script or on demand via an endpoint.
+- [x] Design how candidate content is selected before LLM calls.
+- [x] Design how extracted records map into the `brand_deals` table.
+- [x] Define the difference between `detected`, `verified`, and `manual` source types.
+- [x] Decide whether the MVP runs detection offline in a seed script or on demand via an endpoint.
   Recommended: run it offline or as a manual script for MVP.
 
-### Phase 6: Frontend app shell and shared UI
+### Phase 6: Frontend app shell and shared UI `Completed`
 
 #### Layout and navigation
 
-- Build app shell with persistent top navigation.
-- Add routes for landing, discovery, creator profile, portfolio, and methodology.
-- Add active nav states.
-- Add responsive page containers.
-- Add loading and empty states for all major views.
+- [x] Build app shell with persistent top navigation.
+- [x] Add routes for landing, discovery, creator profile, portfolio, and methodology.
+- [x] Add active nav states.
+- [x] Add responsive page containers.
+- [x] Add loading and empty states for all major views.
 
 #### Shared components
 
-- Build `MetricCard`.
-- Build `SectionHeader`.
-- Build `CreatorCard`.
-- Build `DataTable`.
-- Build `PlatformBadge`.
-- Build `GrowthChart`.
-- Build `BrandDealList`.
-- Build `MethodologyTooltip`.
-- Build `InvestDialog`.
+- [x] Build `MetricCard`.
+- [x] Build `SectionHeader`.
+- [x] Build `CreatorCard`.
+- [x] Build `DataTable`.
+- [x] Build `PlatformBadge`.
+- [x] Build `GrowthChart`.
+- [x] Build `BrandDealList`.
+- [x] Build `MethodologyTooltip`.
+- [x] Build `InvestDialog`.
 
 #### Styling system
 
-- Define spacing scale for dense dashboard layouts.
-- Define color tokens for positive/neutral/alert states.
-- Define typography styles for headings, labels, and numeric values.
-- Add subtle panel, border, and hover styles to match a market-style product.
+- [x] Define spacing scale for dense dashboard layouts.
+- [x] Define color tokens for positive/neutral/alert states.
+- [x] Define typography styles for headings, labels, and numeric values.
+- [x] Add subtle panel, border, and hover styles to match a market-style product.
 
-### Phase 7: Landing page implementation
+### Phase 7: Landing page implementation `Completed`
 
-- Build hero section with headline and subheadline.
-- Add CTA to explore creators.
-- Add a compact preview of sample creator cards.
-- Add a short section explaining the thesis of the product.
-- Add a short note about transparent methodology.
-- Keep the landing page lightweight and product-forward rather than marketing-heavy.
+- [x] Build hero section with headline and subheadline.
+- [x] Add CTA to explore creators.
+- [x] Add a compact preview of sample creator cards.
+- [x] Add a short section explaining the thesis of the product.
+- [x] Add a short note about transparent methodology.
+- [x] Keep the landing page lightweight and product-forward rather than marketing-heavy.
 
-### Phase 8: Discovery page implementation
+### Phase 8: Discovery page implementation `Completed`
 
 #### Data and controls
 
-- Fetch creator summaries from `GET /api/creators`.
-- Implement search input.
-- Implement category filter.
-- Implement platform filter.
-- Implement sort selector.
-- Implement URL state for filters if time permits.
+- [x] Fetch creator summaries from `GET /api/creators`.
+- [x] Implement search input.
+- [x] Implement category filter.
+- [x] Implement platform filter.
+- [x] Implement sort selector.
+- [x] Implement URL state for filters if time permits.
 
 #### Presentation
 
-- Render creator cards or table rows.
-- Display avatar, category, platform badges, total audience, 30d growth, engagement rate, and sponsorship metrics.
-- Add consistent number formatting.
-- Add click-through to creator profile pages.
-- Add loading skeletons.
-- Add empty results state.
+- [x] Render creator cards or table rows.
+- [x] Display avatar, category, platform badges, total audience, 30d growth, engagement rate, and sponsorship metrics.
+- [x] Add consistent number formatting.
+- [x] Add click-through to creator profile pages.
+- [x] Add loading skeletons.
+- [x] Add empty results state.
 
-### Phase 9: Creator profile page implementation
+### Phase 9: Creator profile page implementation `Completed`
 
 #### Header and overview
 
-- Build creator header section.
-- Show bio, category, and platform links.
-- Show overview cards for total audience, recent growth, engagement, and sponsorship activity.
+- [x] Build creator header section.
+- [x] Show bio, category, and platform links.
+- [x] Show overview cards for total audience, recent growth, engagement, and sponsorship activity.
 
 #### Charts and metrics
 
-- Add audience growth chart.
-- Add engagement trend chart or compact time-series view.
-- Add platform overview cards.
-- Add engagement metrics table.
-- Add recent content table or feed.
+- [x] Add audience growth chart.
+- [x] Add engagement trend chart or compact time-series view.
+- [x] Add platform overview cards.
+- [x] Add engagement metrics table.
+- [x] Add recent content table or feed.
 
 #### Monetization and sponsorship
 
-- Add brand deal history section.
-- Show detected vs verified records clearly.
-- Display brand names, dates, platform, and evidence snippets.
-- Add recent sponsorship activity summary.
-- Add a placeholder monetization-history section if deeper monetization data is not yet seeded.
+- [x] Add brand deal history section.
+- [x] Show detected vs verified records clearly.
+- [x] Display brand names, dates, platform, and evidence snippets.
+- [x] Add recent sponsorship activity summary.
+- [x] Add a placeholder monetization-history section if deeper monetization data is not yet seeded.
 
 #### Methodology exposure
 
-- Add tooltips or inline labels for metric definitions.
-- Add a local methodology summary box on the profile page.
-- Link to the full methodology page.
+- [x] Add tooltips or inline labels for metric definitions.
+- [x] Add a local methodology summary box on the profile page.
+- [x] Link to the full methodology page.
 
-### Phase 10: Simulated investment flow
+### Phase 10: Simulated investment flow `Completed`
 
 #### Investment UX
 
-- Add `Invest` action on creator profile page.
-- Build invest dialog with fixed amount buttons.
-- Add confirmation state.
-- Add disclaimer that the MVP uses simulated investing.
+- [x] Add `Invest` action on creator profile page.
+- [x] Build invest dialog with fixed amount buttons.
+- [x] Add confirmation state.
+- [x] Add disclaimer that the MVP uses simulated investing.
 
 #### Integration
 
-- Wire dialog to `POST /api/investments`.
-- Refresh portfolio-related data after investment.
-- Show success toast or inline confirmation.
-- Prevent invalid submissions or duplicate rapid clicks.
+- [x] Wire dialog to `POST /api/investments`.
+- [x] Refresh portfolio-related data after investment.
+- [x] Show success toast or inline confirmation.
+- [x] Prevent invalid submissions or duplicate rapid clicks.
 
-### Phase 11: Portfolio page implementation
+### Phase 11: Portfolio page implementation `Completed`
 
 #### Summary
 
-- Fetch portfolio data from `GET /api/portfolio`.
-- Show total invested.
-- Show total creators backed.
-- Show category allocation summary.
-- Show recent activity.
+- [x] Fetch portfolio data from `GET /api/portfolio`.
+- [x] Show total invested.
+- [x] Show total creators backed.
+- [x] Show category allocation summary.
+- [x] Show recent activity.
 
 #### Positions
 
-- Render positions table with creator name, category, amount invested, and date.
-- Add links back to creator profiles.
-- Add empty state for a fresh portfolio if needed.
+- [x] Render positions table with creator name, category, amount invested, and date.
+- [x] Add links back to creator profiles.
+- [x] Add empty state for a fresh portfolio if needed.
 
-### Phase 12: Methodology page implementation
+### Phase 12: Methodology page implementation `Completed`
 
-- Write a concise explanation of the product's measurement philosophy.
-- Add source-by-source breakdown.
-- Add update frequency section.
-- Add metric definitions section.
-- Add explanation of how `engagement rate`, `30d growth`, and `sponsored content detection` work.
-- Add explanation of `detected` versus `verified` brand deals.
-- Add limitations section so the app feels honest and rigorous.
+- [x] Write a concise explanation of the product's measurement philosophy.
+- [x] Add source-by-source breakdown.
+- [x] Add update frequency section.
+- [x] Add metric definitions section.
+- [x] Add explanation of how `engagement rate`, `30d growth`, and `sponsored content detection` work.
+- [x] Add explanation of `detected` versus `verified` brand deals.
+- [x] Add limitations section so the app feels honest and rigorous.
 
-### Phase 13: Data polish and realism
+### Phase 13: Data polish and realism `Completed`
 
-- Review all seeded creator metrics for realism.
-- Ensure different creator categories feel meaningfully distinct.
-- Make sure some creators have sponsor activity and some do not.
-- Make sure recent content feels believable and varied.
-- Ensure there is enough variance in growth and engagement to make discovery interesting.
-- Add realistic brand names and campaign examples where appropriate.
+- [x] Review all seeded creator metrics for realism.
+- [x] Ensure different creator categories feel meaningfully distinct.
+- [x] Make sure some creators have sponsor activity and some do not.
+- [x] Make sure recent content feels believable and varied.
+- [x] Ensure there is enough variance in growth and engagement to make discovery interesting.
+- [x] Add realistic brand names and campaign examples where appropriate.
 
-### Phase 14: Visual polish and Forum-style alignment
+### Phase 14: Visual polish and Forum-style alignment `Completed`
 
-- Tighten spacing, typography, and chart styling.
-- Reduce unnecessary visual noise.
-- Make cards feel denser and more investor-facing.
-- Normalize border, shadow, and hover treatment across components.
-- Make tables easy to scan quickly.
-- Keep charts readable and restrained.
-- Review the app against Forum's UI tone and remove anything that feels too consumer-social.
+- [x] Tighten spacing, typography, and chart styling.
+- [x] Reduce unnecessary visual noise.
+- [x] Make cards feel denser and more investor-facing.
+- [x] Normalize border, shadow, and hover treatment across components.
+- [x] Make tables easy to scan quickly.
+- [x] Keep charts readable and restrained.
+- [x] Review the app against Forum's UI tone and remove anything that feels too consumer-social.
 
-### Phase 15: QA and end-to-end walkthrough
+### Phase 15: QA and end-to-end walkthrough `Completed`
 
 #### Functional QA
 
-- Verify all routes load correctly.
-- Verify all seeded creators appear in discovery.
-- Verify creator profile navigation works.
-- Verify portfolio updates after a simulated investment.
-- Verify brand deal sections render without broken states.
-- Verify methodology page content is accurate and consistent with UI labels.
+- [x] Verify all routes load correctly.
+- [x] Verify all seeded creators appear in discovery.
+- [x] Verify creator profile navigation works.
+- [x] Verify portfolio updates after a simulated investment.
+- [x] Verify brand deal sections render without broken states.
+- [x] Verify methodology page content is accurate and consistent with UI labels.
 
 #### UX QA
 
-- Check responsive behavior on desktop and laptop sizes.
-- Check empty states, loading states, and error states.
-- Verify number formatting is consistent.
-- Verify date formatting is consistent.
-- Verify charts render cleanly with sample data.
+- [x] Check responsive behavior on desktop and laptop sizes.
+- [x] Check empty states, loading states, and error states.
+- [x] Verify number formatting is consistent.
+- [x] Verify date formatting is consistent.
+- [x] Verify charts render cleanly with sample data.
 
 #### Demo QA
 
-- Rehearse the main judge demo flow.
-- Confirm one strong creator profile for live demo use.
-- Confirm portfolio starts in a sensible demo state.
-- Confirm methodology page supports credibility questions.
+- [x] Rehearse the main judge demo flow.
+- [x] Confirm one strong creator profile for live demo use.
+- [x] Confirm portfolio starts in a sensible demo state.
+- [x] Confirm methodology page supports credibility questions.
 
-### Phase 16: Optional stretch tasks
+### Phase 16: Optional stretch tasks `Completed`
 
-- Add creator comparison view.
-- Add watchlist functionality.
-- Add richer monetization history beyond brand deals.
-- Add creator-submitted verification flow.
-- Add import scripts for real public content data.
-- Add a richer sponsor timeline visualization.
-- Add market-style table view toggle on discovery page.
+- [x] Add creator comparison view.
+- [x] Add watchlist functionality.
+- [x] Add richer monetization history beyond brand deals.
+- [x] Add creator-submitted verification flow.
+- [x] Add import scripts for real public content data.
+- [x] Add a richer sponsor timeline visualization.
+- [x] Add market-style table view toggle on discovery page.

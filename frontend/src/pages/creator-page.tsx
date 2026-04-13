@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import { AudiencePieChart } from "../components/audience-pie-chart";
 import { BrandDealList } from "../components/brand-deal-list";
 import { ComparisonChart } from "../components/comparison-chart";
 import { DataTable } from "../components/data-table";
@@ -31,44 +32,49 @@ export function CreatorPage(): JSX.Element {
   const watchlist = useWatchlist();
 
   const creator = query.data;
-  if (!creator) {
-    return <div className="text-sm text-muted">Loading creator profile...</div>;
-  }
+  const sourceContributions = creator?.source_contributions ?? [];
+  const platforms = creator?.platforms ?? [];
+  const activeOpportunities = creator?.active_opportunities ?? [];
+
   const methodologyRows = useMemo(
     () =>
-      creator.source_contributions.map((row) => ({
+      sourceContributions.map((row) => ({
         ...row,
         weightingLabel: `${Math.round(row.weighting * 100)}%`,
         totalChangeLabel: `${row.total_change > 0 ? "+" : ""}${row.total_change.toFixed(1)}%`,
       })),
-    [creator.source_contributions],
+    [sourceContributions],
   );
   const platformAudienceData = useMemo(
     () =>
-      creator.platforms.map((platform) => ({
+      platforms.map((platform) => ({
         label: platform.platform,
-        primary: platform.followers,
+        value: platform.followers,
       })),
-    [creator.platforms],
+    [platforms],
   );
   const fundingProgressData = useMemo(
     () =>
-      creator.active_opportunities.map((opportunity) => ({
+      activeOpportunities.map((opportunity) => ({
         label: opportunity.instrument_type === "revenue_share" ? "Revenue note" : "Project round",
         primary: opportunity.capital_raised,
         secondary: opportunity.funding_goal,
       })),
-    [creator.active_opportunities],
+    [activeOpportunities],
   );
   const payoutModelData = useMemo(
     () =>
-      creator.active_opportunities.map((opportunity) => ({
+      activeOpportunities.map((opportunity) => ({
         label: opportunity.instrument_type === "revenue_share" ? "Revenue note" : "Project round",
         primary: 100 * opportunity.payouts_to_date_ratio,
         secondary: 100 * opportunity.expected_total_multiple,
       })),
-    [creator.active_opportunities],
+    [activeOpportunities],
   );
+
+  if (!creator) {
+    return <div className="text-sm text-muted">Loading creator profile...</div>;
+  }
 
   return (
     <div className="space-y-8">
@@ -114,12 +120,7 @@ export function CreatorPage(): JSX.Element {
           />
           <div className="grid gap-4 xl:grid-cols-2">
             <GrowthChart title="Engagement trend" data={creator.engagement_trend} area strokeColor="#ef4444" />
-            <ComparisonChart
-              title="Audience by platform"
-              data={platformAudienceData}
-              primaryLabel="Audience"
-              formatValue={(value) => formatNumber(value)}
-            />
+            <AudiencePieChart title="Audience by platform" data={platformAudienceData} />
             <ComparisonChart
               title="Capital raised versus funding goal"
               data={fundingProgressData}

@@ -18,6 +18,19 @@ import type { Opportunity } from "../types/api";
 const categories = ["all", "fashion", "music", "education", "gaming", "podcasts", "fitness", "beauty", "finance", "food", "sports", "film"];
 const instrumentTypes = ["all", "revenue_share", "project_finance"];
 const ITEMS_PER_PAGE = 10;
+const projectDescriptionsByCategory: Record<string, string> = {
+  beauty: "Fund a new sponsored beauty series",
+  education: "Back the next paid learning cohort",
+  fashion: "Finance an upcoming capsule collection",
+  film: "Help produce the next short film",
+  finance: "Support a premium research product",
+  fitness: "Launch a new training program drop",
+  food: "Expand the next dining concept",
+  gaming: "Sponsor a competitive content sprint",
+  music: "Power the next release campaign",
+  podcasts: "Produce the next podcast season",
+  sports: "Support a filmed training series",
+};
 
 function formatInstrumentType(value: string): string {
   if (value === "all") {
@@ -33,6 +46,14 @@ function formatInstrumentType(value: string): string {
     .split("_")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function getInvestmentDescription(opportunity: Opportunity): string {
+  if (opportunity.instrument_type === "revenue_share") {
+    return "Share in the channel's upside";
+  }
+
+  return projectDescriptionsByCategory[opportunity.category] ?? "Fund a specific creator launch";
 }
 
 export function DiscoveryPage(): JSX.Element {
@@ -93,11 +114,11 @@ export function DiscoveryPage(): JSX.Element {
 
   return (
     <div className="space-y-8">
-      <SectionHeader
+      {/* <SectionHeader
         eyebrow="Discovery"
         title="Browse revenue-share notes and project finance rounds"
         description="Scan exactly what you are funding, how payouts work, and what return range each opportunity targets."
-      />
+      /> */}
       <div className="rounded-2xl border border-border bg-panel/80 p-4">
         <div className="flex flex-wrap gap-2">
           {categories.map((option) => (
@@ -156,8 +177,13 @@ export function DiscoveryPage(): JSX.Element {
               key: "creator",
               header: "Creator",
               render: (row) => (
-                <button className="text-left text-white hover:text-accent" onClick={() => setSelectedOpportunity(row)}>
-                  {row.creator_name}
+                <button
+                  className="group inline-flex items-center text-left font-medium text-white transition hover:text-accent"
+                  onClick={() => setSelectedOpportunity(row)}
+                >
+                  <span className="border-b border-white/30 transition group-hover:border-accent">
+                    {row.creator_name}
+                  </span>
                 </button>
               ),
             },
@@ -171,11 +197,19 @@ export function DiscoveryPage(): JSX.Element {
               ),
               render: (row) => <TrendValue value={formatPercent(row.expected_return_avg)} change={row.expected_return_wow} />,
             },
-            { key: "description", header: "Description", render: (row) => row.title },
+            {
+              key: "description",
+              header: "Description",
+              render: (row) => getInvestmentDescription(row),
+            },
             {
               key: "return_model",
               header: "Return model",
-              render: (row) => row.instrument_type === "revenue_share" ? "Share of creator revenue" : "Project-based return",
+              render: (row) => (
+                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200">
+                  {row.instrument_type === "revenue_share" ? "Revenue Share" : "Project-based return"}
+                </span>
+              ),
             },
             {
               key: "engagement",
@@ -204,6 +238,7 @@ export function DiscoveryPage(): JSX.Element {
           {paginatedItems.map((opportunity) => (
             <OpportunityCard
               key={opportunity.id}
+              description={getInvestmentDescription(opportunity)}
               opportunity={opportunity}
               onSelect={(item) => setSelectedOpportunity(item)}
             />

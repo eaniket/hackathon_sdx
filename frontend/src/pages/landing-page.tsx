@@ -41,27 +41,25 @@ export function LandingPage(): JSX.Element {
 
   return (
     <div className="space-y-16">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#3b82f6,#6d5efc)] text-sm font-semibold text-white shadow-[0_0_30px_rgba(93,103,255,0.35)]">
+            CM
+          </div>
+          <p className="text-2xl font-semibold text-white">Creator Market</p>
+        </div>
+        <Link to="/discover" className="hidden md:block">
+          <Button className="rounded-full border-white/15 bg-[linear-gradient(135deg,#4f46e5,#6d5efc)] px-6 py-3 text-white shadow-[0_0_30px_rgba(109,94,252,0.35)]">
+            Get started
+          </Button>
+        </Link>
+      </div>
+
       <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#060813] px-6 py-5 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] md:px-8 md:py-6">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(118,93,255,0.28),transparent_28%),radial-gradient(circle_at_top_right,rgba(97,120,255,0.2),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(67,232,181,0.16),transparent_22%)]" />
         <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#5f58d4]/25 to-transparent blur-2xl" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#5f58d4]/20 to-transparent blur-2xl" />
         <div className="relative z-10 space-y-8">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#3b82f6,#6d5efc)] text-sm font-semibold text-white shadow-[0_0_30px_rgba(93,103,255,0.35)]">
-                CM
-              </div>
-              <div>
-                <p className="text-2xl font-semibold text-white">Creator Market</p>
-              </div>
-            </div>
-            <Link to="/discover" className="hidden md:block">
-              <Button className="rounded-full border-white/15 bg-[linear-gradient(135deg,#4f46e5,#6d5efc)] px-6 py-3 text-white shadow-[0_0_30px_rgba(109,94,252,0.35)]">
-                Get started
-              </Button>
-            </Link>
-          </div>
-
           {/* <div className="flex justify-center">
             <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur">
               <span className="rounded-full bg-white/8 px-5 py-2 text-sm text-white">Use cases</span>
@@ -90,11 +88,17 @@ export function LandingPage(): JSX.Element {
               </div>
               <div className="grid max-w-2xl gap-3 sm:grid-cols-3">
                 <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 backdrop-blur">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted">Live deals</p>
+                  <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted">
+                    <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(74,222,128,0.9)]" />
+                    Live deals
+                  </p>
                   <p className="mt-2 text-xl font-semibold text-white">{summary.liveDeals}</p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 backdrop-blur">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted">Capital raised</p>
+                  <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted">
+                    Capital raised
+                    <span className="text-emerald-400">↑</span>
+                  </p>
                   <p className="mt-2 text-xl font-semibold text-white">${formatNumber(summary.capitalRaised)}</p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 backdrop-blur">
@@ -133,7 +137,7 @@ export function LandingPage(): JSX.Element {
                   </div>
 
                   <div className="mt-6 space-y-4">
-                    <div className="grid grid-cols-6 gap-2">
+                    {/* <div className="grid grid-cols-6 gap-2">
                       {[44, 30, 58, 36, 74, 66].map((height) => (
                         <div key={height} className="flex items-end">
                           <div
@@ -142,7 +146,7 @@ export function LandingPage(): JSX.Element {
                           />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
                     <div className="relative h-36 overflow-hidden rounded-[1.25rem] border border-white/6 bg-[linear-gradient(180deg,rgba(22,24,41,0.92),rgba(12,14,25,0.92))]">
                       <div className="absolute inset-x-0 top-8 border-t border-white/5" />
                       <div className="absolute inset-x-0 top-20 border-t border-white/5" />
@@ -236,7 +240,12 @@ export function LandingPage(): JSX.Element {
         />
         <div className="grid gap-4 md:grid-cols-2">
           {items.map((opportunity) => (
-            <OpportunityCard key={opportunity.id} opportunity={opportunity} onSelect={setSelectedOpportunity} />
+            <OpportunityCard
+              key={opportunity.id}
+              description={opportunity.summary}
+              opportunity={opportunity}
+              onSelect={setSelectedOpportunity}
+            />
           ))}
         </div>
       </section>

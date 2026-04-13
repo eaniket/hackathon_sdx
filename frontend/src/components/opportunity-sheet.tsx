@@ -23,13 +23,24 @@ export function OpportunitySheet({
         <Dialog.Content className="fixed right-0 top-[72px] h-[calc(100vh-72px)] w-full max-w-xl overflow-y-auto overscroll-contain border-l border-border bg-panel p-6 pb-8">
           {opportunity ? (
             <div className="space-y-6">
-              <div>
+              <div className="flex items-start justify-between gap-4">
+                <div>
                 <Dialog.Title className="text-2xl font-semibold text-white">
-                  {opportunity.title}
+                  {opportunity.creator_name}
                 </Dialog.Title>
                 <Dialog.Description className="mt-2 text-sm text-muted">
-                  {opportunity.creator_name} · {opportunity.instrument_type === "revenue_share" ? "Revenue share note" : "Project finance round"}
+                  {opportunity.instrument_type === "revenue_share" ? "Revenue share note" : "Project finance round"}
                 </Dialog.Description>
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    aria-label="Close details"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-xl leading-none text-muted transition hover:border-white/20 hover:text-white"
+                  >
+                    ×
+                  </button>
+                </Dialog.Close>
               </div>
               <p className="text-sm text-slate-200">{opportunity.summary}</p>
               <div className="grid grid-cols-2 gap-4 rounded-2xl border border-border bg-black/10 p-4 text-sm">
@@ -54,19 +65,29 @@ export function OpportunitySheet({
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-white">What the investor is funding</h3>
-                <ul className="space-y-2 text-sm text-slate-200">
+                <div className="flex flex-wrap gap-2">
                   {opportunity.use_of_funds.map((item) => (
-                    <li key={item}>{item}</li>
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200"
+                    >
+                      {item}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-white">What the investor gets back</h3>
-                <ul className="space-y-2 text-sm text-slate-200">
+                <div className="flex flex-wrap gap-2">
                   {opportunity.revenue_streams.map((item) => (
-                    <li key={item}>{item}</li>
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200"
+                    >
+                      {item}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="rounded-xl border border-border bg-black/10 p-4 text-sm text-slate-200">
                 <p><span className="text-muted">Return model:</span> {opportunity.instrument_type === "revenue_share" ? "Share of creator revenue" : "Project-based return"}</p>
@@ -82,9 +103,6 @@ export function OpportunitySheet({
                 }}
               >
                 Know more
-              </Button>
-              <Button variant="ghost" className="w-full" onClick={onClose}>
-                Close
               </Button>
             </div>
           ) : null}

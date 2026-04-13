@@ -3,11 +3,13 @@ import { formatNumber, formatPercent } from "../lib/utils";
 import { Card } from "./ui/card";
 
 type OpportunityCardProps = {
+  description: string;
   opportunity: Opportunity;
   onSelect: (opportunity: Opportunity) => void;
 };
 
 export function OpportunityCard({
+  description,
   opportunity,
   onSelect,
 }: OpportunityCardProps): JSX.Element {
@@ -21,13 +23,13 @@ export function OpportunityCard({
             className="h-12 w-12 rounded-full object-cover"
           />
           <div>
-            <p className="text-base font-semibold text-white">{opportunity.title}</p>
+            <p className="text-base font-semibold text-white">{opportunity.creator_name}</p>
             <p className="text-sm text-muted">
               {opportunity.creator_name} · {opportunity.instrument_type === "revenue_share" ? "Revenue share" : "Project finance"}
             </p>
           </div>
         </div>
-        <p className="text-sm text-slate-200">{opportunity.summary}</p>
+        <p className="text-sm text-slate-200">{description}</p>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p className="text-muted">Funding goal</p>

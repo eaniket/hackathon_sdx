@@ -3,7 +3,7 @@ from pathlib import Path
 
 from sqlmodel import Session
 
-from app.core.config import BASE_DIR
+from app.core.config import DATABASE_PATH
 from app.db.session import create_db_and_tables, engine
 from app.models.entities import BrandDeal, ContentItem, Creator, CreatorPlatform, Investment, User
 from app.services.brand_deals import extract_brand_deals
@@ -154,9 +154,9 @@ INITIAL_INVESTMENTS = [
 
 
 def initialize_database() -> None:
-    database_path = BASE_DIR / "creator_investing.db"
-    if database_path.exists():
-        database_path.unlink()
+    if DATABASE_PATH.exists():
+        DATABASE_PATH.unlink()
+    DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
     create_db_and_tables()
     with Session(engine) as session:
         user = User(email="demo@creator.market", display_name="Demo Investor")

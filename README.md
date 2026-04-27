@@ -39,6 +39,10 @@ uvicorn app.main:app --reload
 
 Frontend runs on `http://localhost:5173` and the API runs on `http://localhost:8000`.
 
+The frontend calls `/api`. In local development, Vite proxies that to the
+FastAPI server. On Vercel, `api/index.py` exposes the FastAPI app as a Python
+function. Set `VITE_API_BASE_URL` if you deploy the API somewhere else.
+
 ## Main routes
 
 - `/` landing page

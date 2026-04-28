@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/react";
 
 import App from "./App";
 import { ToastProvider } from "./contexts/toast-context";
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <WatchlistProvider>
         <ToastProvider>
           <App />
+          <Analytics />
         </ToastProvider>
       </WatchlistProvider>
     </QueryClientProvider>

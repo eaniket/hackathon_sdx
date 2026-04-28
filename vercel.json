@@ -13,6 +13,9 @@
   "functions": {
     "api/index.py": {
       "excludeFiles": "frontend/**"
+    },
+    "api/[...path].py": {
+      "excludeFiles": "frontend/**"
     }
   }
 }
